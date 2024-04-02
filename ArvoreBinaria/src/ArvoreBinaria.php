@@ -31,7 +31,7 @@ class ArvoreBinaria
             $this->inOrden($node->direita); #Recursividade
         }
     }
-    public function preOrdem($node)
+    public function preOrdem($node) #Imprime todos a a esquerda da esquerda do root > depois todos da direita root
     {
         if ($node != null) {
             echo $node->data . " ";
@@ -39,7 +39,7 @@ class ArvoreBinaria
             $this->preOrdem($node->direita);
         }
     }
-    function posOrdem($node)
+    function posOrdem($node) #Imprime todos a esquerda, depois a direita e por fim o root.
     {
         if ($node != null) {
             $this->posOrdem($node->esquerda);
