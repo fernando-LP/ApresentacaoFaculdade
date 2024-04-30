@@ -1,0 +1,28 @@
+## INSERIR ELEMENTOS EM UMA HEAP ##
+
+ - Inserir por nivel, da esquerda para direita
+ - Se o lement inserido for maior que o pai (Heap Max), troca possicao com o pai
+ -      {17,36,25,7,3,100,1,2,19}
+ - Ao inserir precisa verificar se o Pai do no inserido é menor, se for menor entao troca, e novamente verifica com o no pai, e faz a recursao.
+
+## EXCLUIR ELEMENTOS ##
+
+  - Para remover, remove-se o elemento que esta no topo da heap, ou seja na raiz;
+  - Copia-se o elemento do final para o inicio do lado direito;
+  - Leva-se o elemento que foi coloado no topo da heap para sua respectiva posicao de acordo com a sua prioridade
+
+## COMO ARMAZENAR UM HEAP ##
+
+  - Podemos armazenar um HEP em uma lista(vetor), em que
+   - O filho a esquerda do no em I e armazenado em 2*I;
+   - O filho a direita do no em I e armazenado em 2*I+1;
+   - O pai do no em J esta armazenado em (J/2).
+
+   HEAP = [100,19,36,17,3,25,1,2,7]
+          [ 1  2  3  4  5 6  7 8 9]
+
+   CALCULO = filho a esquerda = 2*1 = 2 | 2 e o indice que contem o valor 19
+   CALCULO = filho a direita = 2*1+1 = 3 | 3 e o indice que contem o valor 36
+   Filho a direita do 19 = 2*2+1 = 5 | 5 e o indice que contem o valor 3
+   Filho a esquerda do 19 = 2*2 = 4 | 4 e o indice que contem o valor 17
+   CALCULO PAI = indice 4 = J=4 entao 4/2 = 2, no indice 2 contem o valor 19, logo pai de 17 e 19
