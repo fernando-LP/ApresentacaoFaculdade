@@ -1,0 +1,31 @@
+### GRAFOS INTRODUCAO ###
+
+ * Grafos são usados em muitas areas como rede de computadores, algoritimos de roteamento, modias sociais, planejamento de trajetorias, entre outros
+ * Nó ou veritice: Representa uma entidade.
+ * Aresta (ou arco): representa a relação entre dois nós. Pode ser direcionada ou não direcionada;
+
+ * ARESTA NAO DIRECIONADA
+   - A conexão entre dois nós é bidirecional. As arestas não tem direcição associada
+   - Permite que a transição ocorra em abas as direções
+   - As arestas em um grafo não direcionado são frequentemento representados por linhas ou segmentos
+
+  * ARESTA DIRECIONADA
+    - Tem uma direção associada, isso significa que a transição só ocorre uma direção especifica, não volta só vai
+    - Somente de A para B, nunca de B para A
+
+
+ ### TERMINOLOGIA ###
+
+  * Grau de nó: numero de arestas conectadas em um nó
+  * Caminho: Sequencia de nós conectados por arestas
+     - Caminho entre 0 e 3 -> {0, 1, 2, 3}
+
+  * Ciclo: Caminho fechado, onde o primeiro e o ultimo nó são iguais.
+
+
+  ### REPRESENTACAO DE GRADOS ###
+  Matriz de adjacencia
+
+  * Matris de adjcacencia é uma matriz bidirecional, onde as linhas e colunas representam os nó;
+  * Cada célula (i, j) contem um valor que indica se exite uma aresta entre os nó i e j;
+  * Essa representação é adequado para grafos pequenos, mas pode ser ineficiente para grafos grandes;
