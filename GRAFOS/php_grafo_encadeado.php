@@ -1,22 +1,22 @@
 <?php
 
 class Node {
-    public $vertex;
+    public $vertice;
     public $next;
 
     public function __construct($v) {
-        $this->vertex = $v;
+        $this->vertice = $v;
         $this->next = null;
     }
 }
 
 class Graph {
-    public $numVertices;
-    public $adjLists;
+    public $numVertices; ##Armazena todos os nos
+    public $adjLists; ##Armazena lista de adjacencia
 
-    public function __construct($vertices) {
+    public function __construct($vertices) { ##REcebe o valor do $vertice e atribui ao $numVertice
         $this->numVertices = $vertices;
-        $this->adjLists = array_fill(0, $vertices, null);
+        $this->adjLists = array_fill(0, $vertices, null); ##array_fill(StartIndex, NumElementos, Valor)
     }
 
     public function addEdge($s, $d) {
@@ -34,9 +34,9 @@ class Graph {
     public function printGraph() {
         for ($v = 0; $v < $this->numVertices; $v++) {
             $temp = $this->adjLists[$v];
-            echo "\nVertex $v\n: ";
+            echo "\nvertice $v\n: ";
             while ($temp) {
-                echo $temp->vertex . " -> ";
+                echo $temp->vertice . " -> ";
                 $temp = $temp->next;
             }
             echo "\n";
@@ -49,7 +49,4 @@ $graph->addEdge(0, 1);
 $graph->addEdge(0, 2);
 $graph->addEdge(0, 3);
 $graph->addEdge(1, 2);
-
 $graph->printGraph();
-
-?>
