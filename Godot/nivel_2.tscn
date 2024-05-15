@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://buwcscyww02st"]
+
+[ext_resource type="Script" path="res://nivel_2.gd" id="1_5brns"]
+[ext_resource type="Texture2D" uid="uid://xakbkm31vxta" path="res://assets/kenney_voxel-pack/PNG/Other/skybox_top.png" id="1_w8rv6"]
+[ext_resource type="Texture2D" uid="uid://dlvrpmx0ll2k3" path="res://assets/kenney_voxel-pack/PNG/Other/skybox_side.png" id="2_5nstk"]
+[ext_resource type="Texture2D" uid="uid://cgcormuuqb5fn" path="res://assets/kenney_voxel-pack/PNG/Other/skybox_sideClouds.png" id="3_8yeb0"]
+[ext_resource type="Texture2D" uid="uid://cx6g4l0pyxc78" path="res://assets/kenney_voxel-pack/PNG/Other/skybox_sideHills.png" id="4_iw1rh"]
+[ext_resource type="PackedScene" uid="uid://dpmq820a8cmpx" path="res://chao.tscn" id="5_54u0b"]
+[ext_resource type="PackedScene" uid="uid://bnneo147r406t" path="res://player.tscn" id="6_pgdke"]
+[ext_resource type="PackedScene" uid="uid://dkouyuf0yv1e2" path="res://gratificacao.tscn" id="7_u2glb"]
+[ext_resource type="PackedScene" uid="uid://c4wemeku3gmmj" path="res://monstro.tscn" id="9_gvk1e"]
+
+[node name="Nivel2" type="Node2D"]
+script = ExtResource("1_5brns")
+
+[node name="fundo" type="Node2D" parent="."]
+
+[node name="SkyboxTop" type="Sprite2D" parent="fundo"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("1_w8rv6")
+
+[node name="SkyboxSide" type="Sprite2D" parent="fundo"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("2_5nstk")
+
+[node name="SkyboxSideClouds" type="Sprite2D" parent="fundo"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("3_8yeb0")
+
+[node name="SkyboxSideHills" type="Sprite2D" parent="fundo"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("4_iw1rh")
+
+[node name="fundo2" type="Node2D" parent="."]
+position = Vector2(511, 0)
+
+[node name="SkyboxTop" type="Sprite2D" parent="fundo2"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("1_w8rv6")
+
+[node name="SkyboxSide" type="Sprite2D" parent="fundo2"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("2_5nstk")
+
+[node name="SkyboxSideClouds" type="Sprite2D" parent="fundo2"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("3_8yeb0")
+
+[node name="SkyboxSideHills" type="Sprite2D" parent="fundo2"]
+position = Vector2(160.5, 196.5)
+texture = ExtResource("4_iw1rh")
+
+[node name="Chao" parent="." instance=ExtResource("5_54u0b")]
+position = Vector2(60, 221)
+
+[node name="Chao2" parent="." instance=ExtResource("5_54u0b")]
+position = Vector2(206, 168)
+
+[node name="Chao5" parent="." instance=ExtResource("5_54u0b")]
+position = Vector2(-48, 275)
+
+[node name="player" parent="." instance=ExtResource("6_pgdke")]
+position = Vector2(35, 184)
+
+[node name="Chao3" parent="." instance=ExtResource("5_54u0b")]
+position = Vector2(315, 119)
+
+[node name="Gratificacao" parent="." instance=ExtResource("7_u2glb")]
+position = Vector2(400, 81)
+
+[node name="Monstro" parent="." instance=ExtResource("9_gvk1e")]
+position = Vector2(-30, 19)
+
+[node name="Monstro2" parent="." instance=ExtResource("9_gvk1e")]
+position = Vector2(77, -30)
+
+[connection signal="body_entered" from="Gratificacao" to="." method="_on_gratificacao_body_entered"]

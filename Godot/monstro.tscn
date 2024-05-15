@@ -1,0 +1,83 @@
+[gd_scene load_steps=16 format=3 uid="uid://c4wemeku3gmmj"]
+
+[ext_resource type="Script" path="res://monstro.gd" id="1_icj2o"]
+[ext_resource type="Texture2D" uid="uid://bvbnh4uqb5bc6" path="res://male/Walk (1).png" id="1_y7irs"]
+[ext_resource type="Texture2D" uid="uid://bil8rgvt4ytdt" path="res://male/Walk (2).png" id="2_7vjk2"]
+[ext_resource type="Texture2D" uid="uid://gheatp23po2o" path="res://male/Walk (3).png" id="3_w6vnv"]
+[ext_resource type="Texture2D" uid="uid://d0yicegyntry" path="res://male/Walk (4).png" id="4_i4ook"]
+[ext_resource type="Texture2D" uid="uid://dmnnfvpkyn6du" path="res://male/Walk (5).png" id="5_nsmon"]
+[ext_resource type="Texture2D" uid="uid://cd7qvxyt1013f" path="res://male/Walk (6).png" id="6_ltjaw"]
+[ext_resource type="Texture2D" uid="uid://b7psdswb60u1t" path="res://male/Walk (7).png" id="7_6jdj2"]
+[ext_resource type="Texture2D" uid="uid://d0mhooo4qiukk" path="res://male/Walk (8).png" id="8_flbus"]
+[ext_resource type="Texture2D" uid="uid://cmea4f07h0bt2" path="res://male/Walk (9).png" id="9_7a1sr"]
+[ext_resource type="Texture2D" uid="uid://b1hlxl06a2ab3" path="res://male/Walk (10).png" id="10_tdr53"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h2ce8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y7irs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7vjk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w6vnv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i4ook")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nsmon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ltjaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6jdj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_flbus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7a1sr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tdr53")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vec6v"]
+radius = 13.0
+height = 58.0
+
+[sub_resource type="Animation" id="Animation_3bx2c"]
+resource_name = "die"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5grey"]
+_data = {
+"die": SubResource("Animation_3bx2c")
+}
+
+[node name="Monstro" type="StaticBody2D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_icj2o")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(266, 111)
+scale = Vector2(0.13, 0.13)
+sprite_frames = SubResource("SpriteFrames_h2ce8")
+animation = &"Walk"
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(266, 114)
+shape = SubResource("CapsuleShape2D_vec6v")
+
+[node name="Anime" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5grey")
+}

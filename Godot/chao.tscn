@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpmq820a8cmpx"]
+
+[ext_resource type="Texture2D" uid="uid://c2sskju7m7and" path="res://assets/Traps/Blocks/Idle.png" id="1_qvmq4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jq1i"]
+size = Vector2(90, 24)
+
+[node name="Chao" type="StaticBody2D"]
+position = Vector2(-52, -6)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(52.5, 6)
+scale = Vector2(5.77273, 1.54545)
+texture = ExtResource("1_qvmq4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(52, 6)
+shape = SubResource("RectangleShape2D_4jq1i")
