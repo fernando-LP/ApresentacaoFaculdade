@@ -1,21 +1,21 @@
 extends CharacterBody2D
 
-const OFFSET: Vector2 = Vector2(0, 31)
-const ATTACK_AREA: PackedScene = preload("res://tiny_sword_demo/enemy/attack_area/enemy_attack_area.tscn")
-const AUDIO_TEMPLATE: PackedScene = preload("res://tiny_sword_demo/environment/audio/audio_template.tscn")
+const OFFSET: Vector2 = Vector2(0, 31)  # Offset para a área de ataque
+const ATTACK_AREA: PackedScene = preload("res://tiny_sword_demo/enemy/attack_area/enemy_attack_area.tscn")  # Cena da área de ataque pré-carregada
+const AUDIO_TEMPLATE: PackedScene = preload("res://tiny_sword_demo/environment/audio/audio_template.tscn")  # Modelo de cena de áudio pré-carregado
 
-@onready var dust: GPUParticles2D = get_node("Dust")
-@onready var texture: Sprite2D = get_node("Texture")
-@onready var animation: AnimationPlayer = get_node("Animation")
-@onready var aux_animation_player: AnimationPlayer = get_node("AuxAnimationPlayer")
+@onready var dust: GPUParticles2D = get_node("Dust")  # Partículas de poeira
+@onready var texture: Sprite2D = get_node("Texture")  # Textura do inimigo
+@onready var animation: AnimationPlayer = get_node("Animation")  # Reprodutor de animação principal
+@onready var aux_animation_player: AnimationPlayer = get_node("AuxAnimationPlayer")  # Reprodutor de animação auxiliar
 
-var can_die: bool = false
-var player_ref: CharacterBody2D = null
+var can_die: bool = false  # Flag indicando se o inimigo pode morrer
+var player_ref: CharacterBody2D = null  # Referência para o jogador
 
-@export var score: int = 1
-@export var health: int = 3
-@export var move_speed: float = 192.0
-@export var distance_threshold: float = 60.0
+@export var score: int = 1  # Pontuação atribuída ao jogador quando o inimigo morre
+@export var health: int = 3  # Saúde inicial do inimigo
+@export var move_speed: float = 192.0  # Velocidade de movimento do inimigo
+@export var distance_threshold: float = 60.0  # Distância mínima para atacar o jogador
 
 func _physics_process(_delta: float) -> void:
 	if can_die:
@@ -38,12 +38,10 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	animate()
 	
-	
 func spawn_attack_area() -> void:
 	var attack_area = ATTACK_AREA.instantiate()
 	attack_area.position = OFFSET
 	add_child(attack_area)
-	
 	
 func animate() -> void:
 	if velocity.x > 0:
@@ -60,37 +58,29 @@ func animate() -> void:
 	dust.emitting = false
 	animation.play("idle")
 	
-	
 func update_health(value: int) -> void:
 	health -= value
 	if health <= 0:
 		can_die = true
 		animation.play("death")
-		
 		return
 		
 	aux_animation_player.play("hit")
 	
-	
 func on_detection_area_body_entered(body):
 	player_ref = body
-	
 	
 func on_detection_area_body_exited(_body):
 	player_ref = null
 	
-	
 func on_animation_finished(anim_name: String) -> void:
 	if anim_name == "death":
 		transition_screen.player_score += score
-		
 		get_tree().call_group("level", "update_score", transition_screen.player_score)
 		get_tree().call_group("level", "increase_kill_count")
 		queue_free()
-		
 		
 func spawn_sfx(sfx_path: String) -> void:
 	var sfx = AUDIO_TEMPLATE.instantiate()
 	sfx.sfx_to_play = sfx_path
 	add_child(sfx)
-	
