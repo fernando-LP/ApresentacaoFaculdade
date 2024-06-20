@@ -17,27 +17,30 @@ var player_ref: CharacterBody2D = null  # Referência para o jogador
 @export var move_speed: float = 192.0  # Velocidade de movimento do inimigo
 @export var distance_threshold: float = 60.0  # Distância mínima para atacar o jogador
 
+#can_die = check se o inimigo esta morto
 func _physics_process(_delta: float) -> void:
 	if can_die:
 		return
-		
+	#Referencia ao usuario, se o usuario esta morto, entao goblin nao faz mais nada	
 	if player_ref == null or player_ref.can_die:
 		velocity = Vector2.ZERO
 		animate()
 		return
-		
+
+	#identifica localizacao do inimigo
 	var direction: Vector2 = global_position.direction_to(player_ref.global_position)
 	var distance: float = global_position.distance_to(player_ref.global_position)
 	
-	if distance < distance_threshold:
+	if distance < distance_threshold:  #ataca
 		animation.play("attack")
 		dust.emitting = false
 		return
 		
-	velocity = direction * move_speed
+	velocity = direction * move_speed #apenas se move
 	move_and_slide()
 	animate()
-	
+
+#Area de ataque do inimigo
 func spawn_attack_area() -> void:
 	var attack_area = ATTACK_AREA.instantiate()
 	attack_area.position = OFFSET
@@ -72,7 +75,8 @@ func on_detection_area_body_entered(body):
 	
 func on_detection_area_body_exited(_body):
 	player_ref = null
-	
+
+#Cena de animacao
 func on_animation_finished(anim_name: String) -> void:
 	if anim_name == "death":
 		transition_screen.player_score += score
